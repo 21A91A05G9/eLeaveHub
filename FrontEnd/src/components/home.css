@@ -1,0 +1,52 @@
+/* home page styling */
+.home{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+.home .card-body{
+    padding: 0px !important;
+}
+.home .card-header {
+   background-color: #0a7647;
+   border-radius: 10px 10px 0px 0px;
+}
+.home .card-header b{
+   
+    color: white;
+}
+.card{
+    background-color: #f7f9f8;
+    padding: 0px !important; 
+    border-radius: 10px;
+    width: 300px;
+    height: 310px;
+    box-shadow: 2px 2px 5px rgb(159, 157, 157) ,inset 2px 2px 5px rgb(155, 153, 153);
+}
+.home .card-footer{
+    background-color:#0a7647;
+    color: rgb(236, 230, 230);
+    border-radius: 10px;
+}
+input{
+    padding: 5px;
+    border-radius: 5px;
+    border-color:rgb(211, 204, 204) ;
+    border: none;
+    box-shadow: 2px 2px 5px rgb(211, 204, 204) ,inset 2px 2px 5px rgb(211, 204, 204);
+}
+input :active{
+    border: 1px solid orange;
+}
+label{
+    text-align: left !important;
+}
+@media  (min-width:320px) and (max-width:675px){
+    .home{
+        margin-top: 150px;
+    }
+}

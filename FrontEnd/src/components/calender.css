@@ -1,0 +1,49 @@
+/* *{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+  } */
+  .hero{
+    
+    background:linear-gradient(45deg,#83B8D7,#BAA6FD);
+    display:grid;
+    font-size: small;
+   
+  
+  }
+  #calendar{
+    width:100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+ @media (min-width:300px) {
+  tr.calendar-body .calendar-day .day{
+    margin: 0px !important;
+    padding: 0px !important;
+ 
+  }
+  .calender-inner{
+    line-height: 1px !important;
+    padding: 0px !important;
+  }
+  .tr.calendar-body .calendar-day,tr.calendar-body .calendar-day{
+    padding: 0px !important;
+  }
+  /* .event-hide #eventListToggler{
+    padding: 0px;
+    top:95%;
+    width: 15%;
+    height: 10%;
+    margin: 10px;
+  } */
+  /* button.icon-button{
+    width: 50%;
+    height: 50%;
+  } */
+ }
+@media (min-width:400px) {
+  .calendar-sidebar{
+    line-height: 17px ;
+  }   
+}
