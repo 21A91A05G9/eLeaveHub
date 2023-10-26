@@ -175,7 +175,7 @@
     padding: 70px 10px 60px 10px;
   }
 }
-@media (min-width:801px) and (max-width:1440px) {
+@media (min-width:801px) {
   .calendar-events {
     width: 164px !important;
     padding: 45px 10px 30px 10px; 
