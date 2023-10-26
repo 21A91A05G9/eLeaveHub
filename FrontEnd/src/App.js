@@ -11,8 +11,8 @@ import $ from 'jquery';function App() {
       
       <BrowserRouter>
       <Student/>
-      {/* <Home/> */}
-      {/* <MainPage /> */}
+      <Home/> 
+      <MainPage />
       <Routes>
         {/* <Route path='/' element={<Main />}/> */}
         <Route path='/requestleave' element={<Rqleave />} />
