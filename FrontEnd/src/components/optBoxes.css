@@ -1,0 +1,13 @@
+.myicon{
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+.row{
+    display: flex;
+    justify-content: center;
+}
+@media (min-width:501px) and (max-width:900px){
+    .myicon{
+        font-size: 45px;
+    }
+}

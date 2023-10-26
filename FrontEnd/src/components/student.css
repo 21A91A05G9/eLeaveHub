@@ -15,13 +15,12 @@
     background-color: rgb(233, 239, 236);
     box-shadow: 2px 2px 5px rgb(159, 157, 157) ,inset 2px 2px 5px rgb(155, 153, 153);
 }
-.row{
+.boxes,.boxesrow{
     display: flex;
     justify-content: center;
 }
 .sidebar{
-    background-color: #0a7647;;
-    border-radius: 0px 10px 10px 0px ;
+    background-color: #03925d;
     color: white !important;
     
 }
@@ -30,14 +29,8 @@ a{
 }
 .offcanvas-title{
     color: white;
-}
-
-
-@media screen and (max-width:990px){
-    .counter{ margin-bottom: 40px; }
-}
-
-.opt .boxes .row{
+}   
+.boxes {
     padding: 10px;
     background-color: #05c07b;
     color: white;
@@ -46,13 +39,14 @@ a{
     border-radius: 10px;
     /* box-shadow: 2px 2px 5px rgb(211, 204, 204) ,inset 2px 2px 5px rgb(211, 204, 204); */
 }
-.opt .boxes .col{
+/* .opt .boxes .col{
     color: white;
-}
+} */
+
 .btn{
     border: none;
     border-radius: 5px;
-    width: 50%;
+   
     box-shadow: 1px 1px 10px rgb(0, 0, 0,0.5) ,inset 1px 1px 5px rgb(0, 0, 0,0.5);
 }
 .box{
@@ -61,7 +55,26 @@ a{
 h1{
     text-align: left;
 }
-@media (min-width:320px) and (max-width:500px) {
+.req{
+   
+    border-radius: 50%;
+    font-weight:bolder;
+    padding: 10px;
+    box-shadow: 1px 1px 15px rgb(91, 91, 91);
+}
+.req b{
+    color:rgb(0, 163, 62);
+}
+.menu{
+    height: 100vh;
+    background-color: #03925d;
+}
+
+@media screen and (max-width:990px){
+    .counter{ margin-bottom: 40px; }
+}
+
+@media (min-width:320px) and (max-width:540px) {
     .sidebar{
         line-height: 40px;
         height: 100vh;
@@ -71,8 +84,31 @@ h1{
     .dash{
         font-size: medium;
     }
+    /* .btn{
+        width: 60%;
+    } */
+    .boxes{
+        width: 250px;
+    }
+    .circle{
+        width: 140px !important;
+        height:140px !important;
+    }
+    .menu{
+        padding-top: 5px;
+        text-align: left;
+        height: 50px
+    }
+    .menu .btn{
+        width: 70px;
+    }
+    .req{
+        width: 80px;
+        height: 70px;
+        margin: 30px;
+    }
 }
-@media (min-width:501px) and (max-width:900px){
+@media (min-width:541px) and (max-width:920px){
     .sidebar{
         line-height: 40px;
         height: 100vh;
@@ -82,8 +118,28 @@ h1{
     .dash{
         font-size: large;
     }
+    .boxes{
+        width: 160px;
+        margin: 5px !important;
+    }
+    .menu .btn{
+        width: 55px;
+        font-size: medium;
+        margin-left: -10px;
+    }
+    .bottom{
+    position: relative;
+    left: -40px;
+    }
+    .req{
+        width: 80px;
+        height: 70px;
+        margin-top: 30px;
+        margin-left: 70px;
+    }
+    
 }
-@media (min-width:901px) and (max-width:1300px){
+@media (min-width:921px) and (max-width:1300px){
     .sidebar{
         line-height: 55px;
         height: 100vh;
@@ -92,6 +148,20 @@ h1{
     }
     .dash{
         font-size: x-large;
+    }
+    .boxes{
+        width: 260px;
+        margin: 10px !important;
+    }
+    .bottom{
+        position: relative;
+        left: -40px;
+    }
+    .req{
+        width: 100px;
+        height: 100px;
+        margin-top: 30px;
+        margin-left: 70px;
     }
 } 
 @media (min-width:1301px){
@@ -103,6 +173,20 @@ h1{
     }
     .dash{
         font-size: 30px;
+    }
+    .boxes{
+        width: 250px;
+        margin: 20px !important;
+    }
+    .bottom{
+        position: relative;
+        left: -40px;
+    }
+    .req{
+        width: 100px;
+        height: 100px;
+        margin-top: 30px;
+        margin-left: 70px;
     }
 } 
 
