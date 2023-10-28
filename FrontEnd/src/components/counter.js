@@ -1,7 +1,7 @@
 import React from 'react'
 import $ from 'jquery';
 import './counter.css'
-export default function counter() {
+export default function counter(p) {
     $(document).ready(function(){
         $('.counter-value').each(function(){
             $(this).prop('Counter',0).animate({
@@ -20,8 +20,8 @@ export default function counter() {
         <div class="row">
             
                 <div class="counter">
-                    <span class="counter-value">15</span>
-                    <h3>Leaves Taken</h3>
+                    <span class="counter-value">{p.cnt}</span>
+                    <h3>{p.purpose}</h3>
                 </div>
            
                     

@@ -5,8 +5,7 @@
     align-items: center;
     align-content: center;
     justify-content: center;
-    text-align: center;
-    
+  
 }
 .home .card-body{
     padding: 0px !important;
@@ -14,6 +13,7 @@
 .home .card-header {
    background-color: #0a7647;
    border-radius: 10px 10px 0px 0px;
+   border: 1px solid white;
 }
 .home .card-header b{
    
@@ -23,14 +23,14 @@
     background-color: #f7f9f8;
     padding: 0px !important; 
     border-radius: 10px;
-    width: 300px;
-    height: 310px;
-    box-shadow: 2px 2px 5px rgb(159, 157, 157) ,inset 2px 2px 5px rgb(155, 153, 153);
+    width: fit-content;
+    box-shadow: 2px 2px 10px rgb(184, 183, 183) , -2px -2px 5px rgb(184, 183, 183);
 }
 .home .card-footer{
     background-color:#0a7647;
     color: rgb(236, 230, 230);
-    border-radius: 10px;
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid white;
 }
 input{
     padding: 5px;
@@ -42,9 +42,12 @@ input{
 input :active{
     border: 1px solid orange;
 }
-label{
-    text-align: left !important;
+p a{
+    color:#047e49
 }
+/* label{
+    text-align: left !important;
+} */
 @media  (min-width:320px) and (max-width:675px){
     .home{
         margin-top: 150px;

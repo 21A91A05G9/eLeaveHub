@@ -1,7 +1,7 @@
 import './mainPage.css'
 import { useState } from 'react';
 import axios from 'axios';
-
+import { Link } from 'react-router-dom'
 function Rqleave(){
     const [formdata,setFormdata] = useState({
         'name':'',
@@ -15,14 +15,14 @@ function Rqleave(){
     const handlesubmit = (e)=>{
         e.preventDefault();
         console.log(formdata)
-        axios.post("http://localhost:5065/formdata",formdata).then((res)=>alert(res.data.msg))
+        axios.post("http://localhost:5067/formdata",formdata).then((res)=>alert(res.data.msg))
         
     }
     return(
         <div className="container">
             <h2 id='rq'>FILL THE DETAILS</h2>
             
-            <form className="form-horizontal mt-5" onSubmit={handlesubmit}>
+            <form className="form-horizontal" onSubmit={handlesubmit}>
             <table className="container">
 
                 <tr  class="row">
@@ -87,7 +87,7 @@ function Rqleave(){
                     </td>
                 </tr>
                 <tr className='row mt-3'>
-                    <button className='but1 col-md-2 offset-md-5' type='submit'>send</button>
+                    <button className='but1 col-md-2 offset-md-7' type='submit'>send</button>
                 </tr>
                 </table>
             </form>
