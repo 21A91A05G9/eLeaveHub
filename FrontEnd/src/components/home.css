@@ -25,6 +25,7 @@
     border-radius: 10px;
     width: fit-content;
     box-shadow: 2px 2px 10px rgb(184, 183, 183) , -2px -2px 5px rgb(184, 183, 183);
+    margin: 10px;
 }
 .home .card-footer{
     background-color:#0a7647;

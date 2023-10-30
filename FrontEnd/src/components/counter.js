@@ -16,7 +16,6 @@ export default function counter(p) {
         });
     });
   return (
-    
         <div class="row">
             
                 <div class="counter">

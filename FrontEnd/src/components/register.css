@@ -1,4 +1,5 @@
 .regForm{
+    margin-top: 70px !important;
     display: flex;
     height: 100vh;
     align-items: center;

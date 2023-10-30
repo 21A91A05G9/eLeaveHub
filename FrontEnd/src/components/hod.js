@@ -28,9 +28,9 @@ export default function Hod() {
                     <Link className='row mt-4 pt-4' to='/student'>Home</Link>
                     <Link className='row ' to='/student'>Accet</Link>
                     <Link className='row ' to='/student'>Reject</Link>
-                    <Link className='row ' to='/student'>Overall</Link>
-                    <Link className='row ' to='/student'>settings</Link>
-                    <Link className='row ' to='/student'>Logout</Link>
+                    <Link className='row ' to='/student'>Pending</Link>
+                    <Link className='row ' to='/studentReq'>Requests</Link>
+                    <Link className='row ' to='/'>Logout</Link>
                 </div>
                 </div>
                 </div>
@@ -64,7 +64,7 @@ export default function Hod() {
                         </div>
                         <div className='col-md-2 col-lg-2 col-xl-2 col-sm-12 col-xs-12 row  '>
                                 
-                                <button className='btn btn-light req'><b> <Link to='/requestleave'>Requests</Link></b></button>
+                                <button className='btn btn-light req'><b> <Link to='/studentReq'>Requests</Link></b></button>
     
                         </div>
                     </div>

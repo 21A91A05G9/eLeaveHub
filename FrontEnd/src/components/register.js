@@ -1,5 +1,6 @@
 import React from 'react'
 import './home.css'
+import MainPage from './mainPage';
 import axios from 'axios'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -18,13 +19,15 @@ function Register(){
     function handleSTUreg(e){
         e.preventDefault();
         // console.log(formdata)
-        axios.post("http://localhost:5067/handle_student_reg",formdata).then((res)=>{
+        axios.post("http://localhost:5111/handle_student_reg",formdata).then((res)=>{
         alert(res.data.msg)})
+        
     }
     
     return(
         <>
-        <div className='regForm mx-3' >
+         <MainPage /> 
+        <div className='regForm mx-3 mt-5 my-3' >
         <div class="card  col-md-4 col-lg-3 col-xl-2 col-sm-12 col-xs-12 ">
                 <div class="card-header">
                     <b>Student</b>

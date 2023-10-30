@@ -27,9 +27,9 @@ export default function Student() {
                     <Link className='row mt-4 pt-4' to='/student'>Home</Link>
                     <Link className='row ' to='/student'>Accet</Link>
                     <Link className='row ' to='/student'>Reject</Link>
-                    <Link className='row ' to='/student'>Overall</Link>
+                    <Link className='row ' to='/student'>Pending</Link>
                     <Link className='row ' to='/student'>settings</Link>
-                    <Link className='row ' to='/student'>Logout</Link>
+                    <Link className='row ' to='/'>Logout</Link>
                 </div>
                 </div>
                 </div>

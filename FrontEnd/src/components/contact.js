@@ -1,7 +1,9 @@
 import './contact.css'
+import MainPage from './mainPage';
 function Contact(){
     return (
-      <footer className="scontainer-fluid" > 
+      <footer className="scontainer-fluid mt-5" > 
+        <MainPage /> 
        <div className="container" >
             <div className="row container" >
                 <div className="col-md-5 col-sm-1 col-xs-1 col-lg-5  col-offset-md-3"></div>

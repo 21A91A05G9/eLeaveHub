@@ -11,7 +11,7 @@ export default function OptBoxes(props) {
                     <FontAwesomeIcon icon={props.icon} className="myicon col"/> 
                     <div className='col'></div>   
                 </div>
-                <button className='btn btn-light'>{props.name}</button>
+                <div className='btn btn-light'>{props.name}</div>
             </div>
         </div>
     

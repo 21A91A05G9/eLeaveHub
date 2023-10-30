@@ -18,7 +18,7 @@ function MainPage(){
             <ul class="nav navbar-nav ms-auto">
                         
                 <li class="dropdown nav-item">
-                    <Link to="/home" class="nav-link" style={{color:"white"}}>HOME</Link>
+                    <Link to="/" class="nav-link" style={{color:"white"}}>HOME</Link>
                     {/* <a href="" class="nav-link" style={{color:"black"}}>HOME</a> */}
                 </li>
                 {/* <li class="dropdown nav-item">

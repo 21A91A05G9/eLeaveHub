@@ -15,18 +15,18 @@ function Rqleave(){
     const handlesubmit = (e)=>{
         e.preventDefault();
         console.log(formdata)
-        axios.post("http://localhost:5067/formdata",formdata).then((res)=>alert(res.data.msg))
+        axios.post("http://localhost:5111/formdata",formdata).then((res)=>alert(res.data.msg))
         
     }
     return(
         <div className="container">
-            <h2 id='rq'>FILL THE DETAILS</h2>
+            <h2 id='rq' className='text-center'>FILL THE DETAILS</h2>
             
             <form className="form-horizontal" onSubmit={handlesubmit}>
             <table className="container">
 
                 <tr  class="row">
-                    <td className="col-md-2 offset-md-2 lab-td">
+                    <td className="col-md-2 lab-td">
                     <label className="lab">Name:</label> 
                     </td>
                     <td className="col-md-5"> 
@@ -35,7 +35,7 @@ function Rqleave(){
                 </tr>
 
                 <tr  class="row">
-                    <td className="col-md-2 offset-md-2 lab-td">
+                    <td className="col-md-2  lab-td">
                     <label className="lab">RollNumber:</label> 
                     </td>
                     <td className="col-md-5"> 
@@ -44,7 +44,7 @@ function Rqleave(){
                 </tr>
 
                 <tr  class="row">
-                    <td className="col-md-2 offset-md-2 lab-td">
+                    <td className="col-md-2 lab-td">
                     <label className="lab">Email:</label> 
                     </td>
                     <td className="col-md-5"> 
@@ -53,7 +53,7 @@ function Rqleave(){
                 </tr>
 
                 <tr  class="row">
-                    <td className="col-md-2 offset-md-2 lab-td">
+                    <td className="col-md-2 lab-td">
                     <label className="lab">PhoneNumber:</label> 
                     </td>
                     <td className="col-md-5"> 
@@ -62,7 +62,7 @@ function Rqleave(){
                 </tr>
 
                 <tr  class="row">
-                    <td className="col-md-2 offset-md-2 lab-td">
+                    <td className="col-md-2  lab-td">
                     <label className="lab">Branch:</label> 
                     </td>
                     <td className="col-md-5"> 
@@ -70,7 +70,7 @@ function Rqleave(){
                     </td>
                 </tr>
                 <tr  class="row">
-                    <td className="col-md-2 offset-md-2 lab-td">
+                    <td className="col-md-2 lab-td">
                     <label className="lab">College:</label>
                     </td>
                     <td className="col-md-5">
@@ -78,7 +78,7 @@ function Rqleave(){
                     </td>
                 </tr>
                 <tr  class="row">
-                    <td className="col-md-2 offset-md-2 lab-td">
+                    <td className="col-md-2  lab-td">
                     <label className="lab">ReasonForLeave:</label> 
                     </td>
                     <td className="col-md-5"> 
@@ -87,7 +87,8 @@ function Rqleave(){
                     </td>
                 </tr>
                 <tr className='row mt-3'>
-                    <button className='but1 col-md-2 offset-md-7' type='submit'>send</button>
+                    <button className='but1 col-md-2 offset-md-2 ' type='submit'>Send</button>
+                    <button className='but1 col-md-2 ' type='submit'><Link style={{color:"white"}} to='/student'>Back</Link></button>
                 </tr>
                 </table>
             </form>

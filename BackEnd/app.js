@@ -8,24 +8,22 @@ import studentdetails from "./models/studentdetails";
 const app =express();
 app.use(bodyparser.json())
 app.use(cors())
-//bqz0DwT22jAAojuS
-mongoose.connect('mongodb+srv://SudheeshnaVijju:bqz0DwT22jAAojuS@cluster0.lertnm8.mongodb.net/eLeaveHub?retryWrites=true&w=majority')
-.then(() => app.listen(5067))
-.then(() =>console.log("Connected to Database & Listining to localhost 5067"))
+//MYX1EAgyWx4uMfCK
+mongoose.connect('mongodb+srv://SudheeshnaVijju:jBTw3xIoUPeROH6d@cluster0.lertnm8.mongodb.net/eLeaveHub?retryWrites=true&w=majority')
+.then(() => app.listen(5111))
+.then(() =>console.log("Connected to Database & Listining to localhost 5111"))
 .catch((err) => console.log(err));
 
 app.post('/formdata',async(req,res,next)=>{
-    const {name, rollnum, email,phnum,branch,college,reason}=req.body;
+    const {name, rollnum, email,reason}=req.body;
+    const count='-1';
     const f=new form({
         name,
         rollnum,
         email,
-        phnum,
-        branch,
-        college,
-        reason
+        reason,
+        count
     })
-    
     try{
         f.save()
         var transporter = nodemailer.createTransport({
@@ -35,27 +33,35 @@ app.post('/formdata',async(req,res,next)=>{
               pass: 'rbux xjcb yltf rckk'
             }
           });
-          
-          var mailOptions = {
+          studentdetails.findOne({uremail: email}).then(user=>{
+            if(user){
+            var mailOptions = {
             from: 'sudheeshnavijjusudheeshnavijju@gmail.com',
-            to: email,
+            to: user.hodemail,
             subject: 'eLeaveHub Mail',
-            text: "Dear Madam/Sir, \n\tI'm "+name+" from "+branch+" department having Roll Number "+rollnum.toUpperCase()+" in "+college.toUpperCase()+" college. I'm sending this mail because I'm requesting you a leave and the reason is: "+reason+"."+
+            // text:'hello...'
+            text: "Dear Madam/Sir, \n\tI'm "+user.name+" from "+user.branch+" department having Roll Number "+user.rollnum.toUpperCase()+" in "+user.clg.toUpperCase()+" college. I'm sending this mail because I'm requesting you a leave and the reason is: "+reason+"."+
             "I'm hoping that you will accept the leave.\n\t\t\tThanking you\nAccept the Leave:LINK\nReject the Leave:LINK"
-          };
+          }
           
           transporter.sendMail(mailOptions, function(error, info){
             if (error) {
               console.log(error);
             } else {
               console.log('Email sent: ' + info.response);
+              return res.send({msg:"Email sent successfully to your hod"})
+
             }
-          });
+          })}
+          else return res.send({msg:"plz give valid information"})
+        })
     }
     catch(err){
         console.log(err)
+        return res.send({msg:"error in sending the mail"})
+
     }
-    return res.send({msg:"submitted"})
+    
 })
 
 app.post('/handle_student_reg',async(req,res,next)=>{
@@ -109,3 +115,44 @@ app.post('/handle_student_login',(req,res)=>{
     }
   })
 })
+
+app.post('/getdata',(req,res,next)=>{
+  form.find({ count: '-1' }).then(user=>{
+    res.send(user)
+  })})
+
+app.put('/set1/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const count = '1';
+
+    const query = { _id: id };
+
+    const updatedDoc = await form.findOneAndUpdate(query, { count });
+
+    if (updatedDoc) {
+      console.log("Document updated successfully");
+    } else {
+      console.log("Document not found");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+app.put('/set0/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const count = '0';
+    const query = { _id: id };
+
+    const updatedDoc = await form.findOneAndUpdate(query, { count }); 
+    if (updatedDoc) {
+      res.send({ message: 'Document updated successfully' });
+    } else {
+      console.log("Document not found");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
