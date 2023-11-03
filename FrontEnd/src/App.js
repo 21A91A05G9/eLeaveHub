@@ -9,6 +9,7 @@ import Register from './components/register';
 import Hod from './components/hod'
 import Contact from './components/contact';
 import HodAccept from './components/hodaccept';
+import About from './components/about';
 function App() {
   return (
     <div className="App">
@@ -23,11 +24,12 @@ function App() {
         <Route path='/requestleave' element={<Rqleave />} />
         <Route path='/studentDashboard' element={<Student/>}/>
         <Route path='/register' element={<Register />} />
-        {/* <Route path='/about' element={<Rqleave />} /> */}
+        <Route path='/about' element={<About />} />
         <Route path='/login' element={<Home />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/sendemail' element={<Rqleave />} />
         <Route path='/studentReq' element={<HodAccept/>}/>
+        <Route path='/hod' element={<Hod/>}/>
       </Routes>
       </BrowserRouter>
       
@@ -36,3 +38,7 @@ function App() {
 }
 
 export default App;
+
+
+
+

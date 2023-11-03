@@ -1,13 +1,17 @@
 .myicon{
-        font-size: 60px;
-        margin-bottom: 15px;
+        font-size: 30px;
+        margin-top: 4px;
     }
 .row{
     display: flex;
     justify-content: center;
+  
+}
+b{
+    color: rgb(54, 51, 51) !important;
 }
 @media (min-width:501px) and (max-width:900px){
     .myicon{
-        font-size: 45px;
+        font-size: 25px;
     }
 }

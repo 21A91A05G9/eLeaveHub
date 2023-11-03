@@ -6,12 +6,12 @@ export default function OptBoxes(props) {
   return (
 
     <div>
-            <div className='row m-1' >
-                <div className='row m-1' >
-                    <FontAwesomeIcon icon={props.icon} className="myicon col"/> 
-                    <div className='col'></div>   
-                </div>
-                <div className='btn btn-light'>{props.name}</div>
+            <div className='row ' >
+                <div className='row ' >
+                    {/* <FontAwesomeIcon icon={props.icon} className="myicon col"/> */}
+                    <b>{props.name}</b>
+                    <b>{props.cnt}</b>
+                  </div>
             </div>
         </div>
     

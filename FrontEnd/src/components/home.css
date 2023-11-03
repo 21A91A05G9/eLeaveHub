@@ -17,7 +17,7 @@
 }
 .home .card-header b{
    
-    color: white;
+    color: white !important;
 }
 .card{
     background-color: #f7f9f8;

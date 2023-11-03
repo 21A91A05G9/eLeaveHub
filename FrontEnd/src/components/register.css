@@ -24,7 +24,7 @@ a{
 }
 .regForm .card-header b{
    
-    color: white;
+    color: white !important;
 }
 .regForm .card-footer{
     background-color:#0a7647;

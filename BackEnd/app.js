@@ -5,10 +5,12 @@ import mongoose from "mongoose";
 import form from "./models/form";
 import nodemailer from 'nodemailer';
 import studentdetails from "./models/studentdetails";
+import hoddetails from "./models/hoddetails";
+
 const app =express();
 app.use(bodyparser.json())
 app.use(cors())
-//MYX1EAgyWx4uMfCK
+//jBTw3xIoUPeROH6d
 mongoose.connect('mongodb+srv://SudheeshnaVijju:jBTw3xIoUPeROH6d@cluster0.lertnm8.mongodb.net/eLeaveHub?retryWrites=true&w=majority')
 .then(() => app.listen(5111))
 .then(() =>console.log("Connected to Database & Listining to localhost 5111"))
@@ -97,10 +99,59 @@ app.post('/handle_student_reg',async(req,res,next)=>{
   
 })
 
+app.post('/handle_hod_reg',async(req,res,next)=>{
+  const {name, email,phnum,branch,clg,pwd}=req.body;
+  const f=new hoddetails({
+      name,
+      email,
+      phnum,
+      branch,
+      clg,
+      pwd
+  })
+  if(name=='' ||email=='' || phnum=='' || branch=='' || clg=='' || pwd==''){
+    return res.send({msg:"Enter valid details"})
+  }
+  hoddetails.findOne({email: email})
+  .then(user=>{
+    if(user){
+      return res.send({msg:"Already exists"})
+    }
+    else{
+      try{
+        f.save()
+    }
+    catch(err){
+        console.log(err)
+    }
+    return res.send({msg:"submitted"})
+    }
+  })
+  
+})
+
 
 app.post('/handle_student_login',(req,res)=>{
   const {email,pwd}=req.body;
   studentdetails.findOne({uremail: email})
+  .then(user=>{
+    if(user){
+      if(user.pwd===pwd){
+        res.json('Success')
+      }
+      else{
+        res.json('thepassword is incorrect')
+      }
+    }
+    else{
+      res.json("no registered")
+    }
+  })
+})
+
+app.post('/handle_hod_login',(req,res)=>{
+  const {email,pwd}=req.body;
+  hoddetails.findOne({email: email})
   .then(user=>{
     if(user){
       if(user.pwd===pwd){
@@ -125,13 +176,39 @@ app.put('/set1/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
     const count = '1';
-
     const query = { _id: id };
-
+    form.findOne(query).then((user)=>{
+      try{
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'sudheeshnavijjusudheeshnavijju@gmail.com',
+              pass: 'rbux xjcb yltf rckk'
+            }
+          });
+          
+          var mailOptions = {
+            from: 'sudheeshnavijjusudheeshnavijju@gmail.com',
+            to: user.email,
+            subject: 'eLeaveHub Mail',
+            text: 'Dear '+user.name.toUpperCase()+';\n\tYour request for the the leave due to the reason: '+user.reason+' is "ACCEPTED" by your HOD\n\t\t Have a Nice Day..'
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+    }
+    catch(err){
+        console.log(err)
+    }
+    })
     const updatedDoc = await form.findOneAndUpdate(query, { count });
-
     if (updatedDoc) {
-      console.log("Document updated successfully");
+      res.send({ message: 'Document updated successfully' });
     } else {
       console.log("Document not found");
     }
@@ -146,7 +223,37 @@ app.put('/set0/:id', async (req, res, next) => {
     const count = '0';
     const query = { _id: id };
 
-    const updatedDoc = await form.findOneAndUpdate(query, { count }); 
+    form.findOne(query).then((user)=>{
+      try{
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'sudheeshnavijjusudheeshnavijju@gmail.com',
+              pass: 'rbux xjcb yltf rckk'
+            }
+          });
+          
+          var mailOptions = {
+            from: 'sudheeshnavijjusudheeshnavijju@gmail.com',
+            to: user.email,
+            subject: 'eLeaveHub Mail',
+            text: 'Dear '+user.name.toUpperCase()+';\n\tYour request for the the leave due to the reason: '+user.reason+' is "REJECTED" by your HOD\n\t\t Sorry to hear that..'
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+    }
+    catch(err){
+        console.log(err)
+    }
+  })
+
+    const updatedDoc = await form.findOneAndUpdate(query, { count });
     if (updatedDoc) {
       res.send({ message: 'Document updated successfully' });
     } else {
@@ -156,3 +263,39 @@ app.put('/set0/:id', async (req, res, next) => {
     console.error(error);
   }
 });
+
+app.post('/acceptcounter',async (req, res, next) => {
+  try{
+  form.find({count:1}).then(result=> {    
+    res.json(result.length)
+  })}
+  catch(err){
+    console.error(err);
+    res.status(500).json({ error: 'An error occurred while counting documents' });  
+  }
+
+})
+
+app.post('/rejectcounter',async (req, res, next) => {
+  try{
+  form.find({count:0}).then(result=> {    
+    res.json(result.length)
+  })}
+  catch(err){
+    console.error(err);
+    res.status(500).json({ error: 'An error occurred while counting documents' });  
+  }
+
+})
+
+app.post('/pendingcounter',async (req, res, next) => {
+  try{
+  form.find({count:-1}).then(result=> {    
+    res.json(result.length)
+  })}
+  catch(err){
+    console.error(err);
+    res.status(500).json({ error: 'An error occurred while counting documents' });  
+  }
+
+})

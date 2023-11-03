@@ -41,16 +41,12 @@ export default function Hodaccept(){
                     arr.map((e,i)=>{
                         if(e.count==='-1'){
                         return(
-                            <div class="row details">
+                            <div class="div">
+                            <b> Name:</b>{e.name} &nbsp;&nbsp;&nbsp;<b>RollNumber:</b>{e.rollnum} &nbsp;&nbsp;&nbsp;<b>Reason:</b>{e.reason}
+                                <button class='accept' onClick={()=>handleaccept((e._id))}>Accept</button>
 
-                             <span className="col-md-3 my-2"> <b>Name:</b>{e.name}</span>
-                             <span className="col-md-3 my-2"><b>RollNumber:</b>{e.rollnum}</span>
-                             <span className="col-md-3 my-2"><b>Reason:</b>{e.reason}</span>
-                                <button class='accept col-md-1 p-1 my-2' onClick={()=>handleaccept((e._id))}>Accept</button>
-
-                                <button class='reject col-md-1 p-1 my-2' onClick={()=>handlereject((e._id))}>Reject</button>
+                                <button class='reject' onClick={()=>handlereject((e._id))}>Reject</button>
                                 {/* {console.log(e)} */}
-                                
                             </div>
                     )}
                 })
