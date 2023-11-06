@@ -1,55 +1,22 @@
-/* ImageGrid.css */
-/* ImageGrid.css */
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust min-width and columns as needed */
-    gap: 10px;
-  }
+.about{
+  position: relative;
+  top:100px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
+  text-align: center;
   
-  .image {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    object-fit: cover;
-  }
-  p{
-    font-size: x-large;
-    padding: 30px;
-  }
-  .b1
-  {
-    color:white ;
-  }
-  .head{
-    padding: 30px;
-  }
-  .head2{
-    padding: 30px;
-  }
-  .im1{
-    height: 300px;
-  }
-  .im2{
-    height: 200px;
-  }
-  .b1{
-    text-align: justify;
-  }
-  .b2{
-    text-align: justify;
-  }
-  .b3{
-    text-align: justify;
-  }
-  .b4{
-    text-align: justify;
-  }
-  .b5{
-    text-align: justify;
-  }
-  .b6{
-    text-align: justify;
-  }
-  .b7{
-    text-align: justify;
-  }
+}
+.txt{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: justify;
+  
+}
+.mainimg{
+  height: 100%;
+  width: 100%;
+}

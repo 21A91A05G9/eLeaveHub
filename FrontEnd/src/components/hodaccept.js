@@ -1,8 +1,11 @@
 import { useState } from "react"
 import './hodaccept.css'
 import axios from "axios"
+import { useParams } from "react-router-dom"
+import MainPage from "./mainPage"
 
 export default function Hodaccept(){
+    const {id} = useParams()
     function handleaccept(id){
         const con=window.confirm("do you want to accept??")
         if(con){
@@ -19,7 +22,7 @@ export default function Hodaccept(){
     const [arr,setarr]=useState([])
     var c=0,flag=0;
     function fun(){
-        axios.post("http://localhost:5111/getdata").then((res)=>{
+        axios.post("http://localhost:5111/getdata/"+id).then((res)=>{
                     setarr(res.data)
                     // console.log(res.data.length)
                     c++;
@@ -34,6 +37,8 @@ export default function Hodaccept(){
         console.log(arr.length)
     if(arr.length!=0){
     return(
+        <>
+        <MainPage/>
         <div class='main'>
             
             {       
@@ -52,12 +57,17 @@ export default function Hodaccept(){
                 })
             }
         </div>
+        </>
     )}
     else{
         return(
-        <center style={{marginTop:"100px"}}>
-        Oops!! Already all requests has been viwed../no Requests
-        </center>
+        <>
+            <MainPage/>
+            <center style={{marginTop:"100px"}}>
+            Oops!! Already all requests has been viwed../no Requests
+            </center>
+        </>
+        
         )
     }
 }

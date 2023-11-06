@@ -58,6 +58,12 @@ a{
 h1{
     text-align: left;
 }
+.reqbtn{
+    border-radius: 10px;
+    border:none;
+    border:2px  solid green;
+    box-shadow: inset 2px 2px 5px#baf6e0,inset -2px -2px 5px #baf6e0;
+}
 /* .req{
     background: linear-gradient( #03925d 50%,#beeada 50%);
     border-radius: 50%;
@@ -88,6 +94,11 @@ a button{
     border:2px  solid green;
     box-shadow: inset 2px 2px 5px#baf6e0,inset -2px -2px 5px #baf6e0;
 }
+
+.profileicon{
+    font-size: 60px;
+}
+
 @media screen and (max-width:990px){
     .counter{ margin-bottom: 40px; }
     .menuicon{
@@ -131,6 +142,11 @@ a button{
     .reqicon{
         font-size: 30px;
     }
+    .profileicon{
+       position: relative;
+       left:12px;
+    }
+    
 }
 @media (min-width:541px) and (max-width:988px){
     .sidebar{

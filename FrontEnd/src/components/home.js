@@ -3,7 +3,6 @@ import './home.css'
 import axios from 'axios'
 import { useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import Main from './main'
 import MainPage from './mainPage'
 export default function Home() {
     const [formdata,setFormdata] = useState({
@@ -16,9 +15,10 @@ export default function Home() {
         e.preventDefault();
         // console.log(formdata)1
         axios.post("http://localhost:5111/handle_student_login",formdata).then((res)=>{
-        alert(res.data)
-        if(res.data==='Success'){
-            nav('/studentDashboard')
+        alert(res.data.msg)
+        const id=(res.data.id)
+        if(res.data.msg==='Success'){
+            nav('/studentDashboard/'+id)
         }})
         .catch(err=>console.log(err))
 
@@ -32,9 +32,10 @@ export default function Home() {
         e.preventDefault();
         // console.log(formdata)1
         axios.post("http://localhost:5111/handle_hod_login",hoddata).then((res)=>{
-        alert(res.data)
-        if(res.data==='Success'){
-            nav('/hod')
+        alert(res.data.msg)
+        const id=(res.data.id)
+        if(res.data.msg==='Success'){
+            nav('/hod/'+id)
         }})
         .catch(err=>console.log(err))
 
@@ -43,7 +44,7 @@ export default function Home() {
     <>
         <MainPage/>
         <div className='container-fluid row home'>
-            {/* student/faculty login */}
+        
             <div class="card text-center col-md-4 col-lg-3 col-xl-2 col-sm-12 col-xs-12 ">
                 <div class="card-header">
                     <b>Student</b>
@@ -80,7 +81,7 @@ export default function Home() {
                 </div>
             </div>
             {/* hod login */}
-            <div class="card text-center col-md-4 col-lg-3 col-xl-2 col-sm-12 col-xs-12 m-3">
+            <div class="card text-center col-md-4 col-lg-3 col-xl-2 col-sm-12 col-xs-12">
                 <div class="card-header">
                    <b>HOD</b>
                 </div>
@@ -104,7 +105,7 @@ export default function Home() {
                         </div>
                         </div>
                         <button  class="btn btn-success" >Login</button>
-                        <p>Don't have a account? <Link to='/register'>Register</Link></p>
+                        <p>Don't have a account? <Link to='/HODregister'>Register</Link></p>
                     </form>
                 </div>
                 </div>

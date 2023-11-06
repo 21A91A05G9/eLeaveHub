@@ -6,6 +6,7 @@ import form from "./models/form";
 import nodemailer from 'nodemailer';
 import studentdetails from "./models/studentdetails";
 import hoddetails from "./models/hoddetails";
+import e from "express";
 
 const app =express();
 app.use(bodyparser.json())
@@ -137,17 +138,212 @@ app.post('/handle_student_login',(req,res)=>{
   .then(user=>{
     if(user){
       if(user.pwd===pwd){
-        res.json('Success')
+        res.send({msg:'Success',id:user._id})
       }
       else{
-        res.json('thepassword is incorrect')
+        res.json({msg:'thepassword is incorrect'})
       }
     }
     else{
-      res.json("no registered")
+      res.json({msg:"no registered"})
     }
   })
 })
+
+app.post('/findstudent/:id',(req,res,next)=>{
+  const _id=req.params.id
+  // console.log(_id)
+  studentdetails.findOne({"_id": _id})
+  .then(user=>{
+    res.send(user)
+    // console.log(user)
+  })
+})
+app.post('/findhod/:id',(req,res,next)=>{
+  const _id=req.params.id
+  // console.log(_id)
+  hoddetails.findOne({"_id": _id})
+  .then(user=>{
+    res.send(user)
+    // console.log(user)
+  })
+})
+
+app.post('/countupdate1/:id',async (req, res, next) => {
+  const _id=req.params.id
+  try{
+    studentdetails.findOne({_id:_id}).then(user=>
+      {
+      form.find({email:user.uremail,count:1}).then((result)=>{
+        // console.log(result.length)
+        res.json(result.length)
+      })
+    })
+  }
+  catch(err){
+    console.error(err);
+    res.status(500).json({ error: 'An error occurred while counting documents' });  
+  }
+
+})
+
+app.post('/countupdate0/:id',async (req, res, next) => {
+  const _id=req.params.id
+  try{
+    studentdetails.findOne({_id:_id}).then(user=>
+      {
+      form.find({email:user.uremail,count:0}).then((result)=>{
+        // console.log(result.length)
+        res.json(result.length)
+      })
+    })
+  }
+  catch(err){
+    console.error(err);
+    res.status(500).json({ error: 'An error occurred while counting documents' });  
+  }
+
+})
+
+app.post('/countupdate-1/:id',async (req, res, next) => {
+  const _id=req.params.id
+  try{
+    studentdetails.findOne({_id:_id}).then(user=>
+      {
+      form.find({email:user.uremail,count:-1}).then((result)=>{
+        // console.log(result.length)
+        res.json(result.length)
+      })
+    })
+  }
+  catch(err){
+    console.error(err);
+    res.status(500).json({ error: 'An error occurred while counting documents' });  
+  }
+
+})
+async function counter1(stulist) {
+  if (stulist) {
+    let c = 0;
+    await Promise.all(
+      stulist.map(async (ele) => {
+        const result = await form.find({ email: ele.uremail, count: 1 });
+        c += result.length;
+      })
+    );
+    //console.log(c);
+    return c;
+  }
+}
+
+app.post('/acceptcounter/:id', async (req, res, next) => {
+  const _id = req.params.id;
+  try {
+    const hod = await hoddetails.findOne({ _id: _id });
+    const stulist = await studentdetails.find({ hodemail: hod.email });
+
+    if (stulist) {
+      const c = await counter1(stulist);
+      res.json(c);
+      //console.log(c);
+    } else {
+      res.json(0);
+    }
+  } catch (error) {
+    // Handle any potential errors here.
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
+async function counter0(stulist) {
+  if (stulist) {
+    let c = 0;
+    await Promise.all(
+      stulist.map(async (ele) => {
+        const result = await form.find({ email: ele.uremail, count: 0 });
+        c += result.length;
+      })
+    );
+    //console.log(c);
+    return c;
+  }
+}
+
+app.post('/rejectcounter/:id', async (req, res, next) => {
+  const _id = req.params.id;
+  try {
+    const hod = await hoddetails.findOne({ _id: _id });
+    const stulist = await studentdetails.find({ hodemail: hod.email });
+
+    if (stulist) {
+      const c = await counter0(stulist);
+      res.json(c);
+      //console.log(c);
+    } else {
+      res.json(0);
+    }
+  } catch (error) {
+    // Handle any potential errors here.
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
+async function counterp(stulist) {
+  if (stulist) {
+    let c = 0;
+    await Promise.all(
+      stulist.map(async (ele) => {
+        const result = await form.find({ email: ele.uremail, count: '-1' });
+        c += result.length;
+      })
+    );
+    //console.log(c);
+    return c;
+  }
+}
+
+app.post('/pendingcounter/:id', async (req, res, next) => {
+  const _id = req.params.id;
+  try {
+    const hod = await hoddetails.findOne({ _id: _id });
+    const stulist = await studentdetails.find({ hodemail: hod.email });
+
+    if (stulist) {
+      const c = await counterp(stulist);
+      res.json(c);
+      //console.log(c);
+    } else {
+      console.log('el')
+      res.json(0);
+    }
+  } catch (error) {
+    // Handle any potential errors here.
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
+  
+// app.post('/countupdate/:id', async (req, res, next) => {
+//   const id = req.params.id;
+//   try {
+//     const user = await form.findOne({_id:id});
+
+//     if (!user) {
+//       // console.log('err')
+//       return res.status(404).json({ error: 'User not found' });
+//     }
+
+//     const result = await form.find({ email: user.email, count: 1 });
+
+//     res.json(result.length);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: 'An error occurred while counting documents' });
+//   }
+// });
+
 
 app.post('/handle_hod_login',(req,res)=>{
   const {email,pwd}=req.body;
@@ -155,22 +351,123 @@ app.post('/handle_hod_login',(req,res)=>{
   .then(user=>{
     if(user){
       if(user.pwd===pwd){
-        res.json('Success')
+        res.json({msg:'Success',id:user._id})
       }
       else{
-        res.json('thepassword is incorrect')
+        res.json({msg:'thepassword is incorrect'})
       }
     }
     else{
-      res.json("no registered")
+      res.json({msg:"no registered"})
     }
   })
 })
 
-app.post('/getdata',(req,res,next)=>{
-  form.find({ count: '-1' }).then(user=>{
-    res.send(user)
-  })})
+var c = [];
+app.post("/getdata/:id", async (req, res) => {
+  const id = req.params.id;
+  const c = [];
+  try {
+    const hod = await hoddetails.findOne({ _id: id });
+
+    if (!hod) {
+      res.status(404).json({ error: "HOD not found" });
+      return;
+    }
+
+    const list = await studentdetails.find({ hodemail: hod.email });
+
+    const userPromises = list.map(async (ele) => {
+      const users = await form.find({ email: ele.uremail, count: "-1" });
+      c.push(users);
+    });
+
+    // Wait for all userPromises to resolve using Promise.all
+    await Promise.all(userPromises);
+
+    // Flatten the 'c' array using Array.prototype.concat and the spread operator
+    const flattenedC = [].concat(...c);
+    flattenedC.sort((a, b) => {
+      if (a.reason < b.reason) return -1;
+      if (a.reason > b.reason) return 1;
+      return 0;
+    });
+    // Now, 'flattenedC' contains a flat array of user data
+    //console.log(flattenedC);
+    res.send(flattenedC);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
+
+
+
+// app.post("/getdata/:id",async(req,res,next)=>{
+//   const id = req.params.id;
+//   const c=[]
+//   hoddetails.findOne({_id:id}).then(hod=>{
+    
+//     studentdetails.find({hodemail:hod.email}).then(list=>{
+//       list.map(ele=>{
+//         form.find({email:ele.uremail},{count:"-1"}).then(user=>{
+//           c.push(user)
+//           console.log(user)
+//         })
+//       })
+//     })
+//   })
+//   res.send(c)
+// })
+// const lookup = new Map();
+// arrayB.forEach((item) => {
+//   lookup.set(item.id, item);
+// });
+
+// Filter arrayA based on matching ids in arrayB
+// const result = arrayA.filter((itemA) => lookup.has(itemA.id));
+
+
+// app.post('/getdata/:id', async (req, res) => {
+//   const id = req.params.id;
+
+//   try {
+//     const hod = await hoddetails.findOne({ _id: id });
+
+//     if (!hod) {
+//       res.status(404).json({ error: 'HOD not found' });
+//       return;
+//     }
+
+//     const stulist = await studentdetails.find({ hodemail: hod.email });
+
+//     if (stulist && stulist.length > 0) {
+//       const c = [];
+//       await Promise.all(
+//         stulist.map(async (ele) => {
+//           const user = await form.find({ email: ele.uremail, count: '-1' });
+//           if (user.length !== 0) {
+//             c.push(user);
+//           }
+//         })
+//       );
+
+//       if (c.length > 0) {
+//         res.json(c);
+//       } else {
+//         console.log('No matching user data found');
+//         res.json([]);
+//       }
+//     } else {
+//       console.log('No matching students found');
+//       res.json([]);
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'An error occurred' });
+//   }
+// });
 
 app.put('/set1/:id', async (req, res, next) => {
   try {

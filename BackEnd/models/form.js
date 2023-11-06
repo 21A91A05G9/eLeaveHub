@@ -14,19 +14,11 @@ const form = new schema({
         type:String,
         required:true
     },
-    phnum:{
-        type:String,
-        required:true
-    },
-    branch:{
-        type:String,
-        required:true
-    },
-    college:{
-        type:String,
-        required:true
-    },
     reason:{
+        type:String,
+        required:true
+    },
+    count:{
         type:String,
         required:true
     }

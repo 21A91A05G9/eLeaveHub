@@ -1,4 +1,4 @@
-import './mainPage.css'
+// import './mainPage.css'
 import { Link } from 'react-router-dom';
 function MainPage(){
     
@@ -17,25 +17,31 @@ function MainPage(){
                     
             <ul class="nav navbar-nav ms-auto">
                         
-                <li class="dropdown nav-item">
+                {/* <li class="dropdown nav-item">
                     <Link to="/" class="nav-link" style={{color:"white"}}>HOME</Link>
-                    {/* <a href="" class="nav-link" style={{color:"black"}}>HOME</a> */}
-                </li>
+                     <a href="" class="nav-link" style={{color:"black"}}>HOME</a> 
+                </li> */}
                 {/* <li class="dropdown nav-item">
                     <Link to="/requestleave" class="nav-link" style={{color:"white"}}>MAIL</Link>
                 </li> */}
-                <li class="dropdown nav-item">
+                {/* <li class="dropdown nav-item">
                     <Link to="/about" class="nav-link" style={{color:"white"}}>ABOUT US</Link>
+                </li> */}
+                 <li class="nav-item">
+                    <Link to="/" class="nav-link p-3" style={{color:"white"}}>
+                        HOME
+                    </Link>
                 </li>
+                
                 <li class="nav-item">
-                    <Link to="/login" class="nav-link" style={{color:"white"}}>LOGIN</Link>
+                    <Link to="/register" class="nav-link" style={{color:"white"}}>
+                    <button className='btn btn-light'>SING UP</button>
+                    </Link>
                 </li>
-                <li class="nav-item">
-                    <Link to="/register" class="nav-link" style={{color:"white"}}>SING UP</Link>
-                </li>
-                <li class="nav-item">
+               
+                {/* <li class="nav-item">
                     <Link to="/contact" class="nav-link" style={{color:"white"}}>CONTACT US</Link>
-                </li>
+                </li> */}
             </ul>
             
             </div>
