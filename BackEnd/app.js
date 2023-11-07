@@ -19,6 +19,8 @@ mongoose.connect('mongodb+srv://SudheeshnaVijju:jBTw3xIoUPeROH6d@cluster0.lertnm
 
 app.post('/formdata',async(req,res,next)=>{
     const {name, rollnum, email,reason}=req.body;
+    // name.toUpperCase()
+    console.log(name)
     const count='-1';
     const f=new form({
         name,
@@ -43,7 +45,7 @@ app.post('/formdata',async(req,res,next)=>{
             to: user.hodemail,
             subject: 'eLeaveHub Mail',
             // text:'hello...'
-            text: "Dear Madam/Sir, \n\tI'm "+user.name+" from "+user.branch+" department having Roll Number "+user.rollnum.toUpperCase()+" in "+user.clg.toUpperCase()+" college. I'm sending this mail because I'm requesting you a leave and the reason is: "+reason+"."+
+            text: "Dear Madam/Sir, \n\tI'm "+user.name.toUpperCase()+" from "+user.branch.toUpperCase()+" department having Roll Number "+user.rollnum.toUpperCase()+" in "+user.clg.toUpperCase()+" college. I'm sending this mail because I'm requesting you a leave and the reason is: "+reason+"."+
             "I'm hoping that you will accept the leave.\n\t\t\tThanking you\nAccept the Leave:LINK\nReject the Leave:LINK"
           }
           
@@ -221,6 +223,14 @@ app.post('/countupdate-1/:id',async (req, res, next) => {
     res.status(500).json({ error: 'An error occurred while counting documents' });  
   }
 
+})
+
+app.post('/showdata/:id',async(req,res,next)=>{
+  const id=req.params.id;
+  studentdetails.findOne({_id:id}).then(stu=>{
+    form.find({email:stu.uremail}).then(data=>
+      res.send(data))
+  })
 })
 async function counter1(stulist) {
   if (stulist) {

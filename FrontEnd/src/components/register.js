@@ -34,7 +34,7 @@ function Register(){
         <div className='container login'>
         <div class="card text-bg-success mb-3">
         
-                <div class="card-header"><b>Student</b></div>
+                <div class="card-header" ><b style={{color:'white'}}>Student</b></div>
                 <div class="card-body">
                 <div class="container">
                 <form  onSubmit={handleSTUreg}>

@@ -27,14 +27,14 @@ function Rqleave(props){
         <div className="row dash">
             <Sidebar id={props.id}/>
             <div className='col-md-11 col-lg-11 col-xl-11 col-sm-10 col-xs-10 box'>
-            <h2 id='rq'>FILL THE DETAILS</h2>
+            <h2 id='rq'>FILL DETAILS FOR LEAVE</h2>
             
             <form className="form-horizontal mt-5" onSubmit={handlesubmit}>
             <table className="container">
 
                 <tr  class="row">
                     <td className="col-md-2 offset-md-2 lab-td">
-                    <label className="lab">Name:</label> 
+                    {/* <label className="lab">Name:</label>  */}
                     </td>
                     <td className="col-md-5"> 
                     <input type="text" name="name" class="form-control" placeholder="type your name here" value={formdata.name} onChange={(e)=>setFormdata({...formdata,name:e.target.value})} />

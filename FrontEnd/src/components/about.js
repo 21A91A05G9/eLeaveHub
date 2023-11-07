@@ -3,15 +3,15 @@ import './about.css'
 import {Link} from 'react-router-dom'
 import MainPage from "./mainPage";
 import Contact from './contact';
-
+import logo from '../images/logo.jpg'
 import student from '../images/students.jpg'
-import hod from '../images/hod.jpg'
 import accept from '../images/accept.jpg'
 import reject from '../images/reject.jpg'
 import leave from '../images/leave.png'
 import user from '../images/user.jpg'
 import Studentpopup from "./studentpopup";
 import Hodpopup from "./hodpopup";
+
 const About = () => {
   
   return (
@@ -34,7 +34,7 @@ const About = () => {
           
           </div>
           {/* <div className="col-sm-12 col-xs-12 col-md-1 col-lg-1 col-xl-1"></div> */}
-          <div className="col-sm-12 col-xs-12 col-md-7 col-lg-7 col-xl-7"><img className="mainimg" src={hod}/></div>
+          <div className="col-sm-12 col-xs-12 col-md-7 col-lg-7 col-xl-7"><img className="mainimg" src={logo}/></div>
       </div>
 
       <div className="p-3 m-5"></div>

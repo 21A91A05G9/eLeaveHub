@@ -1,7 +1,9 @@
 /* .App {
   text-align: center;
 } */
-
+*{
+  font-family: 'Nunito Sans', sans-serif;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -48,5 +50,10 @@
   /* background-color: rgb(238, 254, 247); */
 }
 .logincon{
-  background-color: rgb(238, 254, 247);
+  /* background-color: rgb(238, 254, 247); */
+  background-image: url('images/bg.png');
+  background-size: cover;
+}
+body{
+  background-color:#f4fdfa;
 }

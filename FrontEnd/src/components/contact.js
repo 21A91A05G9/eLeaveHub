@@ -77,7 +77,7 @@ function Contact(){
 
             <div className="row d-flex justify-content-between py-4" >
               <p className="copy-rights text-center">
-                © 2023 textEditors @ Noolu Vasavi. All rights reserved.
+                © 2023 @eLeaveHub. All rights reserved.
               </p>
               
             </div>

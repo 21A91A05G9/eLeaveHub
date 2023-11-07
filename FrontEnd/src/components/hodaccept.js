@@ -3,7 +3,7 @@ import './hodaccept.css'
 import axios from "axios"
 import { useParams } from "react-router-dom"
 import MainPage from "./mainPage"
-
+import Sidebar from "./sidebar"
 export default function Hodaccept(){
     const {id} = useParams()
     function handleaccept(id){
@@ -38,34 +38,48 @@ export default function Hodaccept(){
     if(arr.length!=0){
     return(
         <>
-        <MainPage/>
-        <div class='main'>
-            
+        <div className='container'>
+        <div className="row dash">
+            <Sidebar />
+            <div className='col-md-11 col-lg-11 col-xl-11 col-sm-10 col-xs-10 main'>
+            <h2>Requests To Approve</h2>
+            <div class="maindiv row">
+                <span className="col">Name</span > <span className="col">Roll No.</span> <span className="col">Reason</span> 
+                <button className="col-1 btn btn-success mx-2">Accept</button> <button className="col-1 btn btn-danger mx-2">Reject</button>
+            </div>
             {       
-                    
                     arr.map((e,i)=>{
+                        
                         if(e.count==='-1'){
                         return(
-                            <div class="div">
-                            <b> Name:</b>{e.name} &nbsp;&nbsp;&nbsp;<b>RollNumber:</b>{e.rollnum} &nbsp;&nbsp;&nbsp;<b>Reason:</b>{e.reason}
-                                <button class='accept' onClick={()=>handleaccept((e._id))}>Accept</button>
+                            <div class="div row">
+                                <span className="col">{e.name}</span> <span className="col">{e.rollnum}</span><span className="col">{e.reason}</span>
+                                <button class='btn btn-success col-1 mx-2' onClick={()=>handleaccept((e._id))}>Accept</button>
 
-                                <button class='reject' onClick={()=>handlereject((e._id))}>Reject</button>
+                                <button class='btn btn-danger col-1 mx-2' onClick={()=>handlereject((e._id))}>Reject</button>
                                 {/* {console.log(e)} */}
                             </div>
                     )}
                 })
             }
         </div>
+        </div>
+        </div>
+
         </>
     )}
     else{
         return(
         <>
-            <MainPage/>
-            <center style={{marginTop:"100px"}}>
-            Oops!! Already all requests has been viwed../no Requests
-            </center>
+            <div className='container'>
+            <div className="row dash">
+            <Sidebar />
+            <div className='col-md-11 col-lg-11 col-xl-11 col-sm-10 col-xs-10 main'>
+            
+            Oops!! Already all requests has been viwed:)/no Requests
+           </div>
+           </div>
+           </div>
         </>
         
         )

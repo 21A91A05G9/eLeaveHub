@@ -1,7 +1,7 @@
 import React from 'react'
 import './student.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faHomeUser,faUser} from '@fortawesome/free-solid-svg-icons'
+import {faHomeUser,faUser,faCamera} from '@fortawesome/free-solid-svg-icons'
 
 import { Link } from 'react-router-dom'
 export default function sidebar(props) {
@@ -20,11 +20,13 @@ export default function sidebar(props) {
                             <FontAwesomeIcon icon={faUser} className="profileicon pt-3"/>
                              {/* <img src="image" alt="profile"/> */}
                         </div>
+                       
                     </div>
-                    <Link className='row mt-4 pt-4' to={'/studentdashboard/'+props.id}>Home</Link>
+                    <FontAwesomeIcon icon={faCamera} className='cam row' />
+                    <Link className='row mt-4' to={'/studentdashboard/'+props.id}>Dashboard</Link>
                     <Link className='row ' to='/about'>About</Link>
                     <Link className='row ' to='/contact'>Contact</Link>
-                    <Link className='row ' to='/sendemail'>Request</Link>
+                    <Link className='row ' to={props.to}>Request</Link>
                     <Link className='row ' to='/student'>settings</Link>
                     <Link className='row ' to='/'>Logout</Link>
                 </div>

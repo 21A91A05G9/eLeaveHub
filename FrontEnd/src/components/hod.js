@@ -1,10 +1,11 @@
 import React,{useState} from 'react'
 import './student.css'
 import Piechart from './piechart'
+import Sidebar from './sidebar';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Counter from './counter';
-import { faCircleXmark,faCheckSquare ,faChartPie,faListUl,faHomeUser} from '@fortawesome/free-solid-svg-icons'
+import { faCircleXmark,faCheckSquare ,faChartPie,faListUl,faHomeUser,faHandPointDown,faMailBulk} from '@fortawesome/free-solid-svg-icons'
 import OptBoxes from './optBoxes'
 import Calender from './calender'
 import axios  from 'axios';
@@ -35,29 +36,8 @@ export default function Hod() {
     <>
         <div className='container-fluid'>
             <div className='row dash'>
-                <div className='col-md-1 col-lg-1 col-xl-1 col-sm-1 col-xs-1 pt-4 menu'>
-                <button class="btn btn-success " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"> <FontAwesomeIcon icon={faHomeUser} className="menuicon"/> </button>
-                <div class="offcanvas offcanvas-start sidebar show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel"  aria-modal="true" role="dialog">
-                
-
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Name</h5>
-                    <button type="button" class="btn  btn-success" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <div className='row  mb-3'>
-                        <div className='profileCircle'> {/* <img src="image" alt="profile"/> */}</div>
-                    </div>
-                    
-                    <Link className='row mt-4 pt-4' to={'/hod/'+id}>Home</Link>
-                    <Link className='row ' to='/about'>About</Link>
-                    <Link className='row ' to='/contact'>Contact</Link>
-                    <Link className='row ' to='/hodaccept'>Requests</Link>
-                    <Link className='row ' to='/student'>Settings</Link>
-                    <Link className='row ' to='/'>Logout</Link>
-                </div>
-                </div>
-                </div>
+                <Sidebar id={id} to={'/hodaccept'}/>
+              
               
                 <div className='col-md-11 col-lg-11 col-xl-11 col-sm-10 col-xs-10 box' >
                     <h1 className='pt-4 pb-1 mx-5 wel'>{name}...</h1>
@@ -69,42 +49,25 @@ export default function Hod() {
                     <div className='col-md-7 col-lg-7 col-xl-7 col-sm-12 col-xs-12' >
                         <div className='row leaveCnt m-3 '> <Calender/> </div>
                     </div> 
-                    {/* <div className='mainbox col-md-5 p-4 rounded'>
-                        <Link to='/requestleave'><button className="btnReq p-2"><FontAwesomeIcon  icon={faPaperPlane} />&nbsp;Request</button></Link>
-                        <div className='row pt-4'>
-                            <b className='col-3'>Accepted {}</b>
-                            <b className='col-3'>Rejected {}</b>
-                            <b className='col-3'>Pending {}</b>
-                        </div>
-                    </div> */}
-                    <div className='row bottom pt-5'>
-                        <div className='col-md-3 col-lg-3 col-xl-3 col-sm-12 col-xs-12 row  '>
-                                
-                                <div className='req'><b> 
+                    <div className='row pt-5'>
+                        <div className='col-md-4 col-lg-4 col-xl-4 col-sm-12 col-xs-12  msg'>  
                                 {/* <FontAwesomeIcon icon={faEnvelopesBulk} className="reqicon pt-4"/> */}
+                                <p className='text-center p-5  pb-1 pt-1'>click here to view request <FontAwesomeIcon icon={faHandPointDown} className="reqicon"/></p>
+                                <button  className=" btn-success btn" onClick={()=>nav('/hodaccept/'+id)} ><FontAwesomeIcon icon={faMailBulk} className="reqicon"/></button>
+                                {/* <button className=" btn-success btn req" onClick={()=>nav('/requestleave/'+id)}> <FontAwesomeIcon style={{color:'white'}} icon={faPaperPlane} className="reqicon"/></button> */}
+                                {/* <button class=" btn-success btn"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="paper-plane" class="svg-inline--fa fa-paper-plane reqicon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="white" d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"></path></svg></button> */}
                                 
-                                
-                                    <button className=" btn-success reqbtn row">
-                                    <b className='col mainbtn' onClick={()=>nav('/hodaccept/'+id)}>Requests</b></button></b>
-                                    {/* <div class="spinner-grow text-success col" role="status" >
-                                    <span className="visually-hidden ">Loading... </span>
-                                    </div> */}
-                                    
-                                   
-                                    
-                                </div>
-                           
                         </div>
                         
-                        <div className='col-md-9 col-lg-8 col-xl-8 col-sm-12 col-xs-12 boxmain'>
+                        <div className='col-md-7 col-lg-7 col-xl-7 col-sm-12 col-xs-12 boxmain m-2 p-3' >
                             <div className='row boxesrow'>
-                                <div className='col-md-4 boxes m-1' >
+                                <div className='col p-3 m-2' >
                                     <div className='row'><OptBoxes name="Accepted" cnt={a} icon={faCheckSquare}/></div>
                                 </div>
-                                <div className=' col-md-4 boxes m-1'>
+                                <div className=' col p-3 m-2'>
                                     <div className='row  '><OptBoxes name="Rejected" cnt={r} icon={faCircleXmark}/></div>
                                 </div>
-                                <div className='col-md-4 boxes m-1'>
+                                <div className='col p-3 m-2'>
                                     <div className='row '><OptBoxes name="Pending" cnt={o} icon={faChartPie}/></div>
                                 </div>
                             </div>
